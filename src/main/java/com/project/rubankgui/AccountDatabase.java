@@ -157,31 +157,34 @@ public class AccountDatabase {
     /**
      sorts and prints the accounts in order
      */
-    public void printSorted(){
+    public String printSorted(){
+        StringBuilder out = new StringBuilder();
         quicksort(0, numAcct - 1);
         for(int n = 0; n < numAcct; n++) {
-            System.out.println(accounts[n].toString());
+            out.append(accounts[n].toString()).append("\n");
         }
+        return out.toString();
     } //sort by account type and profile
 
     /**
      calculates and prints the all the fees and interest rates of the accounts
      */
-    public void printFeesAndInterests(){
+    public String printFeesAndInterests(){
         quicksort(0, numAcct - 1);
+        StringBuilder out = new StringBuilder();
         for(int n = 0; n < numAcct; n++) {
-            System.out.println(accounts[n].toString() + "::fee $" + String.format("%,.2f", accounts[n].monthlyFee()) +
-                    "::monthly interest $" + String.format("%,.2f", accounts[n].monthlyInterest()));
+            out.append(accounts[n].toString()).append("::fee $").append(String.format("%,.2f", accounts[n].monthlyFee())).append("::monthly interest $").append(String.format("%,.2f", accounts[n].monthlyInterest())).append("\n");
         }
+        return out.toString();
     } //calculate interests/fees
 
     /**
      applies the fees and prints the accounts in the updated order
      */
-    public void printUpdatedBalances(){
+    public String printUpdatedBalances(){
         for(int n = 0; n < numAcct; n++) {
             accounts[n].applyFeesInterest();
         }
-        printSorted();
+        return printSorted();
     } //apply the interests/fees
 }
