@@ -6,6 +6,9 @@ import javafx.scene.control.Label;
 
 public class TransactionManagerController {
     @FXML
-    protected void onLogInButtonClick() {
+    protected void onOpenButtonClick() {
+    }
+    @FXML
+    protected void onCloseButtonClick() {
     }
 }

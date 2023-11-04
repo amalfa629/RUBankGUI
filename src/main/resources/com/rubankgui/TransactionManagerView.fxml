@@ -76,10 +76,7 @@
                                 <fx:define>
                                     <ToggleGroup fx:id="campus" />
                                 </fx:define>
-                                <RadioButton mnemonicParsing="false" text="Checking">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="campus" />
-                                 </toggleGroup></RadioButton>
+                                <RadioButton mnemonicParsing="false" text="Checking" toggleGroup="$campus"/>
                                 <RadioButton mnemonicParsing="false" text="College Checking" toggleGroup="$campus" />
                                 <RadioButton mnemonicParsing="false" text="Savings" toggleGroup="$campus" />
                                 <RadioButton mnemonicParsing="false" text="Money Market" toggleGroup="$campus" />
@@ -97,7 +94,7 @@
                                        <MenuItem mnemonicParsing="false" text="New Brunswick" />
                                    </items>
                                  </MenuButton>
-                                 <CheckBox mnemonicParsing="false" mouseTransparent="true" text="Loyal Customer" />
+                                 <CheckBox mnemonicParsing="false" mouseTransparent="true" text="Loyal Customer?" />
                               </children>
                            </HBox>
                            <HBox alignment="CENTER">
