@@ -1,4 +1,4 @@
-package com.project.rubankgui;
+package com.rubankgui;
 
 /**
  Creates a profile for an account holder

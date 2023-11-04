@@ -1,4 +1,4 @@
-package com.project.rubankgui;
+package com.rubankgui;
 
 /**
  Creates an account database to keep track of what accounts have been created

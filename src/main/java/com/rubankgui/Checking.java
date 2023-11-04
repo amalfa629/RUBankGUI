@@ -1,4 +1,4 @@
-package com.project.rubankgui;
+package com.rubankgui;
 
 /**
  Creates a checking account that inherits the properties of the Account class

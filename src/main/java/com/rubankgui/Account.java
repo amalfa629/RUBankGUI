@@ -1,4 +1,4 @@
-package com.project.rubankgui;
+package com.rubankgui;
 
 /**
  Creates an abstract account type with properties that all subclasses inherit

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: Red;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rubankgui.TransactionManagerController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <HBox alignment="CENTER">
+      <children>
+         <ImageView fitHeight="62.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@R_Logo.png" />
+            </image>
+         </ImageView>
+         <Label alignment="BOTTOM_LEFT" text="U Bank" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="Yu Gothic UI Regular" size="65.0" />
+            </font>
+         </Label>
+      </children>
+   </HBox>
+   <TabPane tabClosingPolicy="UNAVAILABLE">
+     <tabs>
+       <Tab text="Manage Database">
+         <content>
+           <AnchorPane />
+         </content>
+       </Tab>
+       <Tab text="Open/Close">
+         <content>
+           <AnchorPane style="-fx-background-color: #bdb2b1;">
+                  <children>
+                     <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT">
+                        <children>
+                           <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                              <children>
+                                 <HBox alignment="CENTER_LEFT" style="-fx-padding: 5;" HBox.hgrow="ALWAYS">
+                                    <children>
+                                       <Label prefHeight="17.0" prefWidth="83.0" text="First Name:" />
+                                       <TextField prefHeight="25.0" prefWidth="250.0" />
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" style="-fx-padding: 5;" HBox.hgrow="ALWAYS">
+                                    <children>
+                                       <Label prefHeight="17.0" prefWidth="83.0" text="Last Name:" />
+                                       <TextField prefHeight="25.0" prefWidth="250.0" />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                              <children>
+                                 <Label prefHeight="17.0" prefWidth="81.0" text="Date of Birth:" />
+                                 <DatePicker />
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER">
+                              <children>
+                                 <RadioButton mnemonicParsing="false" text="Checking" />
+                                 <RadioButton mnemonicParsing="false" text="College Checking" />
+                                 <RadioButton mnemonicParsing="false" text="Savings" />
+                                 <RadioButton mnemonicParsing="false" text="Money Market" />
+                              </children>
+                           </HBox>
+                        </children>
+                     </VBox>
+                  </children>
+               </AnchorPane>
+         </content>
+       </Tab>
+         <Tab text="Deposit/Withdraw">
+           <content>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+           </content>
+         </Tab>
+     </tabs>
+   </TabPane>
+</VBox>

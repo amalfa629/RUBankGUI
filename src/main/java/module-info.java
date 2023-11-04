@@ -3,6 +3,6 @@ module com.example.rubankgui {
     requires javafx.fxml;
 
 
-    opens com.project.rubankgui to javafx.fxml;
-    exports com.project.rubankgui;
+    opens com.rubankgui to javafx.fxml;
+    exports com.rubankgui;
 }

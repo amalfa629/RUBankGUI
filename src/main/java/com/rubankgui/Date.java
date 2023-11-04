@@ -1,4 +1,4 @@
-package com.project.rubankgui;
+package com.rubankgui;
 /**
  Stores the date as three integer variables, various methods for evaluating dates
  @author Tyler Amalfa, Zafar Khan

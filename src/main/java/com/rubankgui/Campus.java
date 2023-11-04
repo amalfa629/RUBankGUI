@@ -1,4 +1,4 @@
-package com.project.rubankgui;
+package com.rubankgui;
 
 /**
  Enumerated class with the different rutgers campuses
