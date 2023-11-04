@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -43,17 +48,17 @@
          <content>
            <AnchorPane style="-fx-background-color: #bdb2b1;">
                   <children>
-                     <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT">
+                     <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
                            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                               <children>
-                                 <HBox alignment="CENTER_LEFT" style="-fx-padding: 5;" HBox.hgrow="ALWAYS">
+                                 <HBox alignment="CENTER" style="-fx-padding: 5;" HBox.hgrow="ALWAYS">
                                     <children>
                                        <Label prefHeight="17.0" prefWidth="83.0" text="First Name:" />
                                        <TextField prefHeight="25.0" prefWidth="250.0" />
                                     </children>
                                  </HBox>
-                                 <HBox alignment="CENTER_LEFT" style="-fx-padding: 5;" HBox.hgrow="ALWAYS">
+                                 <HBox alignment="CENTER" style="-fx-padding: 5;" HBox.hgrow="ALWAYS">
                                     <children>
                                        <Label prefHeight="17.0" prefWidth="83.0" text="Last Name:" />
                                        <TextField prefHeight="25.0" prefWidth="250.0" />
@@ -67,12 +72,38 @@
                                  <DatePicker />
                               </children>
                            </HBox>
+                            <HBox alignment="CENTER">
+                                <fx:define>
+                                    <ToggleGroup fx:id="campus" />
+                                </fx:define>
+                                <RadioButton mnemonicParsing="false" text="Checking">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="campus" />
+                                 </toggleGroup></RadioButton>
+                                <RadioButton mnemonicParsing="false" text="College Checking" toggleGroup="$campus" />
+                                <RadioButton mnemonicParsing="false" text="Savings" toggleGroup="$campus" />
+                                <RadioButton mnemonicParsing="false" text="Money Market" toggleGroup="$campus" />
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                            </HBox>
                            <HBox alignment="CENTER">
                               <children>
-                                 <RadioButton mnemonicParsing="false" text="Checking" />
-                                 <RadioButton mnemonicParsing="false" text="College Checking" />
-                                 <RadioButton mnemonicParsing="false" text="Savings" />
-                                 <RadioButton mnemonicParsing="false" text="Money Market" />
+                                 <Label text="Campus: " />
+                                 <MenuButton mnemonicParsing="false" mouseTransparent="true" text="Choose Campus">
+                                   <items>
+                                     <MenuItem mnemonicParsing="false" text="Camden" />
+                                     <MenuItem mnemonicParsing="false" text="Newark" />
+                                       <MenuItem mnemonicParsing="false" text="New Brunswick" />
+                                   </items>
+                                 </MenuButton>
+                                 <CheckBox mnemonicParsing="false" mouseTransparent="true" text="Loyal Customer" />
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER">
+                              <children>
+                                 <Button mnemonicParsing="false" text="Open Account" />
+                                 <Button mnemonicParsing="false" text="Close Account" />
                               </children>
                            </HBox>
                         </children>

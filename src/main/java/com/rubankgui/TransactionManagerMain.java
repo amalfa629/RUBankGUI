@@ -11,7 +11,7 @@ public class TransactionManagerMain extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TransactionManagerMain.class.getResource("TransactionManagerView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 960);
+        Scene scene = new Scene(fxmlLoader.load(), 960, 480);
         stage.setTitle("Welcome to RUBank!");
         stage.setScene(scene);
         stage.show();
