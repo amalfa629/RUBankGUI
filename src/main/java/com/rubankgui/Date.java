@@ -1,4 +1,7 @@
 package com.rubankgui;
+
+import java.time.LocalDate;
+
 /**
  Stores the date as three integer variables, various methods for evaluating dates
  @author Tyler Amalfa, Zafar Khan
@@ -81,5 +84,11 @@ public class Date implements Comparable<Date>{
             return compare;
         }
         return compare;
+    }
+    public static Date toDate(LocalDate date) {
+        int year = date.getYear();
+        int month = date.getMonthValue();
+        int day = date.getDayOfMonth();
+        return new Date(year, month, day);
     }
 }

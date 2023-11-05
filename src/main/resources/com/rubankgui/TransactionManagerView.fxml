@@ -10,6 +10,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -55,54 +56,84 @@
                                  <HBox alignment="CENTER" style="-fx-padding: 5;" HBox.hgrow="ALWAYS">
                                     <children>
                                        <Label prefHeight="17.0" prefWidth="83.0" text="First Name:" />
-                                       <TextField prefHeight="25.0" prefWidth="250.0" />
+                                       <TextField fx:id="firstName" prefHeight="25.0" prefWidth="250.0" />
                                     </children>
                                  </HBox>
                                  <HBox alignment="CENTER" style="-fx-padding: 5;" HBox.hgrow="ALWAYS">
                                     <children>
                                        <Label prefHeight="17.0" prefWidth="83.0" text="Last Name:" />
-                                       <TextField prefHeight="25.0" prefWidth="250.0" />
+                                       <TextField fx:id="lastName" prefHeight="25.0" prefWidth="250.0" />
                                     </children>
                                  </HBox>
                               </children>
+                              <padding>
+                                 <Insets bottom="10.0" top="10.0" />
+                              </padding>
                            </HBox>
                            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                               <children>
                                  <Label prefHeight="17.0" prefWidth="81.0" text="Date of Birth:" />
-                                 <DatePicker />
+                                 <DatePicker fx:id="birthPicker" />
+                              </children>
+                              <padding>
+                                 <Insets bottom="10.0" top="10.0" />
+                              </padding>
+                           </HBox>
+                           <HBox alignment="CENTER" style="-fx-padding: 5;">
+                              <children>
+                                 <Label prefHeight="17.0" prefWidth="83.0" text="Balance:" />
+                                 <TextField fx:id="balanceText" prefHeight="25.0" prefWidth="250.0" />
                               </children>
                            </HBox>
-                            <HBox alignment="CENTER">
-                                <fx:define>
-                                    <ToggleGroup fx:id="campus" />
-                                </fx:define>
-                                <RadioButton mnemonicParsing="false" text="Checking" toggleGroup="$campus"/>
-                                <RadioButton mnemonicParsing="false" text="College Checking" toggleGroup="$campus" />
-                                <RadioButton mnemonicParsing="false" text="Savings" toggleGroup="$campus" />
-                                <RadioButton mnemonicParsing="false" text="Money Market" toggleGroup="$campus" />
+                            <HBox alignment="CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+                                <RadioButton mnemonicParsing="false" text="Checking">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="accounts" />
+                                 </toggleGroup></RadioButton>
+                                <RadioButton mnemonicParsing="false" text="College Checking" toggleGroup="$accounts" />
+                                <RadioButton mnemonicParsing="false" text="Savings" toggleGroup="$accounts" />
+                                <RadioButton mnemonicParsing="false" text="Money Market" toggleGroup="$accounts" />
                               <VBox.margin>
                                  <Insets />
                               </VBox.margin>
+                              <padding>
+                                 <Insets bottom="10.0" top="10.0" />
+                              </padding>
                             </HBox>
-                           <HBox alignment="CENTER">
+                           <HBox alignment="CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                               <children>
-                                 <Label text="Campus: " />
-                                 <MenuButton mnemonicParsing="false" mouseTransparent="true" text="Choose Campus">
-                                   <items>
-                                     <MenuItem mnemonicParsing="false" text="Camden" />
-                                     <MenuItem mnemonicParsing="false" text="Newark" />
-                                       <MenuItem mnemonicParsing="false" text="New Brunswick" />
-                                   </items>
-                                 </MenuButton>
-                                 <CheckBox mnemonicParsing="false" mouseTransparent="true" text="Loyal Customer?" />
+                                 <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                    <children>
+                                       <Label text="Campus: " />
+                                       <MenuButton fx:id="campusMenu" mnemonicParsing="false" mouseTransparent="true" text="Choose Campus">
+                                         <items>
+                                           <MenuItem mnemonicParsing="false" text="Camden" />
+                                           <MenuItem mnemonicParsing="false" text="Newark" />
+                                             <MenuItem mnemonicParsing="false" text="New Brunswick" />
+                                         </items>
+                                       </MenuButton>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                    <children>
+                                       <CheckBox fx:id="isLoyal" mnemonicParsing="false" mouseTransparent="true" text="Loyal Customer?" />
+                                    </children>
+                                 </HBox>
                               </children>
+                              <padding>
+                                 <Insets bottom="10.0" top="10.0" />
+                              </padding>
                            </HBox>
-                           <HBox alignment="CENTER">
+                           <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                               <children>
-                                 <Button mnemonicParsing="false" text="Open Account" />
-                                 <Button mnemonicParsing="false" text="Close Account" />
+                                 <Button mnemonicParsing="false" onAction="#onOpenButtonClick" text="Open Account" />
+                                 <Button mnemonicParsing="false" onAction="#onCloseButtonClick" text="Close Account" />
                               </children>
+                              <padding>
+                                 <Insets bottom="10.0" top="10.0" />
+                              </padding>
                            </HBox>
+                           <TextArea fx:id="openCloseOutput" editable="false" VBox.vgrow="ALWAYS" />
                         </children>
                      </VBox>
                   </children>
