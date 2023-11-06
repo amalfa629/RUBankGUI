@@ -61,7 +61,7 @@ public class TransactionManagerController {
             amountText.clear();
             accountsDW.selectToggle(null);
         }
-        catch(NullPointerException e) {
+        catch(NullPointerException ignored) {
 
         }
     }
