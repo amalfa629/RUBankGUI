@@ -61,7 +61,7 @@ public class TransactionManagerController {
             amountText.clear();
             accountsDW.selectToggle(null);
         }
-        catch(NullPointerException ignored) {
+        catch(NullPointerException ignored) { //Exception is caused due to initialization on first opening program, will not throw any other exceptions.
 
         }
     }
