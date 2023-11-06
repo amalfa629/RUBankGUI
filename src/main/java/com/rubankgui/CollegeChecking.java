@@ -27,6 +27,9 @@ public class CollegeChecking extends Checking{
     public double monthlyFee() {
         return NOFEE;
     }
+    public Campus getCampus() {
+        return campus;
+    }
 
     /**
      returns the account information using the toString function from the Checking class

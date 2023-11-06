@@ -44,7 +44,6 @@ public class Profile implements Comparable<Profile> {
     public Date getDOB() {
         return dob;
     }
-
     /**
      compares last name, first name, and dob and sorts accordingly
      @param profile profile being compared to

@@ -40,7 +40,9 @@ public class Savings extends Account{
         if(balance >= NOFEEBALANCE) return NOFEE;
         return MONTHLYFEE;
     }
-
+    public boolean isLoyal() {
+        return isLoyal;
+    }
     /**
      returns the account information as a string
      @return uses the profileBalanceToString method to return the account information as a string

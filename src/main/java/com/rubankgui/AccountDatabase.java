@@ -187,4 +187,25 @@ public class AccountDatabase {
         }
         return printSorted();
     } //apply the interests/fees
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        for(int n = 0; n < numAcct; n++) {
+            Account account = accounts[n];
+            String extra = "";
+            if(account instanceof Checking && !(account instanceof CollegeChecking)) out.append("C,");
+            else if(account instanceof CollegeChecking) {
+                out.append("CC,");
+                extra += "," + Campus.valueOf(((CollegeChecking)account).getCampus().toString()).ordinal();
+            }
+            else if (account instanceof MoneyMarket) out.append("MM,");
+            else {
+                out.append("S,");
+                if(((Savings)account).isLoyal()) extra += ",1";
+                else extra += ",0";
+            }
+            Profile profile = account.getHolder();
+            out.append(profile.getFirst()).append(",").append(profile.getLast()).append(",").append(profile.getDOB().toString()).append(",").append(String.format("%,.2f", account.getBalance())).append(extra).append("\n");
+        }
+        return out.toString();
+    }
 }
