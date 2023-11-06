@@ -26,6 +26,12 @@ public class TransactionManagerController {
     private CheckBox isLoyal;
     @FXML
     private TextArea manageDatabaseOutput, openCloseOutput, depositWithdrawOutput;
+
+    /**
+     Checks if a date picked on the datePicker is valid
+     @param datePicker datePicker object that is being checked
+     @return returns true if date is valid returns false if date is invalid
+     */
     private boolean validDatePicker(DatePicker datePicker) {
         try {
             datePicker.getConverter().fromString(
@@ -35,17 +41,33 @@ public class TransactionManagerController {
         }
         return true;
     }
+
+    /**
+     Verifies if a date is a valid calendar date
+     @param date date being verified
+     @return returns a string if it's invalid returns null if valid
+     */
     private String verifyDate(Date date) {
         if(!date.isValid()) return "DOB invalid: " + date.toString() + " not a valid calendar day.";
         if(date.compareTo(new Date(CURRENTYEAR, CURRENTMONTH, CURRENTDAY)) >= 0) return "DOB invalid: " + date.toString() + " cannot be today or a future day.";
         return null;
     }
+
+    /**
+     Returns the age an account holder given their date of birth
+     @param dob the account holder's date of birth
+     @return returns the age
+     */
     private int getAge(Date dob) {
         int age = CURRENTYEAR - dob.getYear();
         if(CURRENTMONTH < dob.getMonth()) return age--;
         if((CURRENTMONTH == dob.getMonth()) && (CURRENTDAY < dob.getDay())) return age--;
         return age;
     }
+
+    /**
+     Clears all the inputs
+     */
     @FXML
     protected void clearInputs() {
         try {
@@ -65,6 +87,14 @@ public class TransactionManagerController {
 
         }
     }
+
+    /**
+     Helper function for the open button
+     @param accountType a String containing the account type
+     @param age an int containing the holder's age
+     @param profile a Profile object for the account holder
+     @param balance a double with the account balance
+     */
     private void openHelper(String accountType, int age, Profile profile, double balance) {
         Account account = null;
         boolean fail = false;
@@ -115,6 +145,10 @@ public class TransactionManagerController {
         }
         else openCloseOutput.appendText("Missing data for opening an account.\n");
     }
+
+    /**
+     Opens an account using the open helper
+     */
     @FXML
     protected void onOpenButtonClick() {
         if(!firstNameOC.getText().isEmpty() && !lastNameOC.getText().isEmpty() && !birthPickerOC.getEditor().getText().isEmpty() && !balanceText.getText().isEmpty() && accountsOC.getSelectedToggle() != null) {
@@ -139,6 +173,10 @@ public class TransactionManagerController {
         }
         else openCloseOutput.appendText("Missing data for opening an account.\n");
     }
+
+    /**
+     Closes an account
+     */
     @FXML
     protected void onCloseButtonClick() {
         double balance = 0;
@@ -176,6 +214,10 @@ public class TransactionManagerController {
         }
         else openCloseOutput.appendText("Missing data for closing an account.\n");
     }
+
+    /**
+     hides the option to select a campus and whether an account holder is loyal
+     */
     @FXML
     protected void hideCampusAndLoyal() {
         campusMenu.selectToggle(null);
@@ -189,6 +231,10 @@ public class TransactionManagerController {
         isLoyal.setMouseTransparent(true);
         isLoyal.setSelected(false);
     }
+
+    /**
+     shows the option to select a campus is the college checking option is selected
+     */
     @FXML
     protected void showCampus() {
         hideCampusAndLoyal();
@@ -199,12 +245,20 @@ public class TransactionManagerController {
         nbButton.setVisible(true);
         nbButton.setMouseTransparent(false);
     }
+
+    /**
+     shows the option to select whether an account holder is loyal if savings account is selected
+     */
     @FXML
     protected void showLoyal() {
         hideCampusAndLoyal();
         isLoyal.setVisible(true);
         isLoyal.setMouseTransparent(false);
     }
+
+    /**
+     Allows the user to deposit money into an account if the deposit button is clicked
+     */
     @FXML
     protected void onDepositButtonClick() {
         if(!firstNameDW.getText().isEmpty() && !lastNameDW.getText().isEmpty() && !birthPickerDW.getEditor().getText().isEmpty() && !amountText.getText().isEmpty() && accountsDW.getSelectedToggle() != null) {
@@ -249,6 +303,10 @@ public class TransactionManagerController {
         }
         else depositWithdrawOutput.appendText("Missing data for depositing into an account.\n");
     }
+
+    /**
+     Allows the user to withdraw money if the withdraw button is clicked
+     */
     @FXML
     protected void onWithdrawButtonClick() {
         if(!firstNameDW.getText().isEmpty() && !lastNameDW.getText().isEmpty() && !birthPickerDW.getEditor().getText().isEmpty() && !amountText.getText().isEmpty() && accountsDW.getSelectedToggle() != null) {
@@ -294,6 +352,10 @@ public class TransactionManagerController {
         }
         else depositWithdrawOutput.appendText("Missing data for withdrawing from an account.\n");
     }
+
+    /**
+     Prints all the accounts in the database sorted by their type and profile when the print all button is clicked
+     */
     @FXML
     protected void onPrintAllButtonClick() {
         if(accountDatabase.size() > 0) {
@@ -303,6 +365,10 @@ public class TransactionManagerController {
         }
         else manageDatabaseOutput.appendText("Account Database is empty!\n");
     }
+
+    /**
+     Prints the list of accounts with fees and monthly interest when the print interest fees button is clicked
+     */
     @FXML
     protected void onPrintInterestFeesButtonClick() {
         if(accountDatabase.size() > 0) {
@@ -312,6 +378,10 @@ public class TransactionManagerController {
         }
         else manageDatabaseOutput.appendText("Account Database is empty!\n");
     }
+
+    /**
+     Prints the updated list of accounts with their fees and interests applied when the update button is clicked
+     */
     @FXML
     protected void onUpdateButtonClick() {
         if(accountDatabase.size() > 0) {
@@ -321,6 +391,10 @@ public class TransactionManagerController {
         }
         else manageDatabaseOutput.appendText("Account Database is empty!\n");
     }
+
+    /**
+     Saves the account database to a text file
+     */
     @FXML
     protected void onSaveButtonClick() {
         try {
@@ -333,6 +407,10 @@ public class TransactionManagerController {
         }
         manageDatabaseOutput.appendText("Successfully saved to bankAccounts.txt\n");
     }
+
+    /**
+     Loads an account database provided by a text file
+     */
     @FXML
     protected void onLoadButtonClick() {
         try {

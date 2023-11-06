@@ -85,6 +85,12 @@ public class Date implements Comparable<Date>{
         }
         return compare;
     }
+
+    /**
+     Takes a LocalDate object then returns it as a Date object with the same year, month and day
+     @param date the LocalDate being turned into a Date
+     @return the Date object with the same year, month, and day as the LocalDate
+     */
     public static Date toDate(LocalDate date) {
         int year = date.getYear();
         int month = date.getMonthValue();

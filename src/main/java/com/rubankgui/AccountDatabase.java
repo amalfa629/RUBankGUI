@@ -187,6 +187,11 @@ public class AccountDatabase {
         }
         return printSorted();
     } //apply the interests/fees
+
+    /**
+     Puts the accounts in the database into a string and returns it
+     @return returns the accounts as a String
+     */
     public String toString() {
         StringBuilder out = new StringBuilder();
         for(int n = 0; n < numAcct; n++) {
