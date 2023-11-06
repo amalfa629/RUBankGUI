@@ -87,7 +87,7 @@ public class Date implements Comparable<Date>{
     }
 
     /**
-     Takes a LocalDate object then returns it as a Date object with the same year, month and day
+     Takes a Java LocalDate object then converts it to a Date object
      @param date the LocalDate being turned into a Date
      @return the Date object with the same year, month, and day as the LocalDate
      */

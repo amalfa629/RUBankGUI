@@ -189,7 +189,7 @@ public class AccountDatabase {
     } //apply the interests/fees
 
     /**
-     Puts the accounts in the database into a string and returns it
+     Puts all accounts in the database into a string and returns it
      @return returns the accounts as a String
      */
     public String toString() {
