@@ -65,6 +65,56 @@ public class TransactionManagerController {
 
         }
     }
+    private void openHelper(String accountType, int age, Profile profile, double balance) {
+        Account account = null;
+        boolean fail = false;
+        switch (accountType) {
+            case "Checking":
+                account = new Checking(profile, balance);
+                break;
+            case "College Checking":
+                if(age < COLLEGEMAXAGE) {
+                    Campus campus = null;
+                    switch (((RadioButton) campusMenu.getSelectedToggle()).getText()) {
+                        case "Camden":
+                            campus = Campus.CAMDEN;
+                            break;
+                        case "Newark":
+                            campus = Campus.NEWARK;
+                            break;
+                        case "New Brunswick":
+                            campus = Campus.NEW_BRUNSWICK;
+                            break;
+                        default:
+                            fail = true;
+                            break;
+                    }
+                    if (!fail) account = new CollegeChecking(profile, balance, campus);
+                    else openCloseOutput.appendText("Invalid Campus Selection!\n");
+                }
+                else {
+                    openCloseOutput.appendText("DOB invalid: " + profile.getDOB().toString() + " over 24.\n");
+                    fail = true;
+                }
+                break;
+            case "Savings":
+                account = new Savings(profile, balance, isLoyal.isSelected());
+                break;
+            case "Money Market":
+                account = new MoneyMarket(profile, balance);
+                break;
+        }
+        if (!fail) {
+            String output = profile.getFirst() + " " + profile.getLast() + " " + profile.getDOB().toString() + "(" + accountType + ")";
+            if (!accountDatabase.open(account))
+                openCloseOutput.appendText(output + " is already in the database.\n");
+            else {
+                openCloseOutput.appendText(output += " opened.\n");
+                clearInputs();
+            }
+        }
+        else openCloseOutput.appendText("Missing data for opening an account.\n");
+    }
     @FXML
     protected void onOpenButtonClick() {
         if(!firstNameOC.getText().isEmpty() && !lastNameOC.getText().isEmpty() && !birthPickerOC.getEditor().getText().isEmpty() && !balanceText.getText().isEmpty() && accountsOC.getSelectedToggle() != null) {
@@ -77,54 +127,7 @@ public class TransactionManagerController {
                         String accountType = ((RadioButton) accountsOC.getSelectedToggle()).getText();
                         double balance = Double.parseDouble(balanceText.getText());
                         if (balance > 0) {
-                            Account account = null;
-                            boolean fail = false;
-                            switch (accountType) {
-                                case "Checking":
-                                    account = new Checking(profile, balance);
-                                    break;
-                                case "College Checking":
-                                    if(age < COLLEGEMAXAGE) {
-                                        Campus campus = null;
-                                        switch (((RadioButton) campusMenu.getSelectedToggle()).getText()) {
-                                            case "Camden":
-                                                campus = Campus.CAMDEN;
-                                                break;
-                                            case "Newark":
-                                                campus = Campus.NEWARK;
-                                                break;
-                                            case "New Brunswick":
-                                                campus = Campus.NEW_BRUNSWICK;
-                                                break;
-                                            default:
-                                                fail = true;
-                                                break;
-                                        }
-                                        if (!fail) account = new CollegeChecking(profile, balance, campus);
-                                        else openCloseOutput.appendText("Invalid Campus Selection!\n");
-                                    }
-                                    else {
-                                        openCloseOutput.appendText("DOB invalid: " + profile.getDOB().toString() + " over 24.\n");
-                                        fail = true;
-                                    }
-                                    break;
-                                case "Savings":
-                                    account = new Savings(profile, balance, isLoyal.isSelected());
-                                    break;
-                                case "Money Market":
-                                    account = new MoneyMarket(profile, balance);
-                                    break;
-                            }
-                            if (!fail) {
-                                String output = profile.getFirst() + " " + profile.getLast() + " " + profile.getDOB().toString() + "(" + accountType + ")";
-                                if (!accountDatabase.open(account))
-                                    openCloseOutput.appendText(output + " is already in the database.\n");
-                                else {
-                                    openCloseOutput.appendText(output += " opened.\n");
-                                    clearInputs();
-                                }
-                            }
-                            else openCloseOutput.appendText("Missing data for opening an account.\n");
+                            openHelper(accountType, age, profile, balance);
                         }
                         else openCloseOutput.appendText("Initial deposit cannot be 0 or negative.\n");
                     }
