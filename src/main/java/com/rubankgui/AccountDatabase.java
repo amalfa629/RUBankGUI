@@ -204,7 +204,7 @@ public class AccountDatabase {
                 else extra += ",0";
             }
             Profile profile = account.getHolder();
-            out.append(profile.getFirst()).append(",").append(profile.getLast()).append(",").append(profile.getDOB().toString()).append(",").append(String.format("%,.2f", account.getBalance())).append(extra).append("\n");
+            out.append(profile.getFirst()).append(",").append(profile.getLast()).append(",").append(profile.getDOB().toString()).append(",").append(String.format("%.2f", account.getBalance())).append(extra).append("\n");
         }
         return out.toString();
     }

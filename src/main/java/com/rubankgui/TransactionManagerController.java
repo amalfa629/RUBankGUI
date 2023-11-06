@@ -1,6 +1,5 @@
 package com.rubankgui;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -47,13 +46,13 @@ public class TransactionManagerController {
         if((CURRENTMONTH == dob.getMonth()) && (CURRENTDAY < dob.getDay())) return age--;
         return age;
     }
-    private void clearInputs(ActionEvent event) {
+    private void clearInputs() {
         firstNameOC.clear();
         lastNameOC.clear();
         birthPickerOC.getEditor().setText(null);
         balanceText.clear();
         accountsOC.selectToggle(null);
-        hideCampusAndLoyal(event);
+        hideCampusAndLoyal();
         firstNameDW.clear();
         lastNameDW.clear();
         birthPickerDW.getEditor().setText(null);
@@ -61,7 +60,7 @@ public class TransactionManagerController {
         accountsDW.selectToggle(null);
     }
     @FXML
-    protected void onOpenButtonClick(ActionEvent event) {
+    protected void onOpenButtonClick() {
         if(!firstNameOC.getText().isEmpty() && !lastNameOC.getText().isEmpty() && !birthPickerOC.getEditor().getText().isEmpty() && !balanceText.getText().isEmpty() && accountsOC.getSelectedToggle() != null) {
             if(validDatePicker(birthPickerOC)) {
                 Profile profile = new Profile(firstNameOC.getText(), lastNameOC.getText(), Date.toDate(birthPickerOC.getValue()));
@@ -116,7 +115,7 @@ public class TransactionManagerController {
                                     openCloseOutput.appendText(output + " is already in the database.\n");
                                 else {
                                     openCloseOutput.appendText(output += " opened.\n");
-                                    clearInputs(event);
+                                    clearInputs();
                                 }
                             }
                             else openCloseOutput.appendText("Missing data for opening an account.\n");
@@ -132,7 +131,7 @@ public class TransactionManagerController {
         else openCloseOutput.appendText("Missing data for opening an account.\n");
     }
     @FXML
-    protected void onCloseButtonClick(ActionEvent event) {
+    protected void onCloseButtonClick() {
         double balance = 0;
         if(!firstNameOC.getText().isEmpty() && !lastNameOC.getText().isEmpty() && !birthPickerOC.getEditor().getText().isEmpty() && accountsOC.getSelectedToggle() != null) {
             if(validDatePicker(birthPickerOC)) {
@@ -159,7 +158,7 @@ public class TransactionManagerController {
                     if (!accountDatabase.close(account)) openCloseOutput.appendText(output + " is not in the database.\n");
                     else {
                         openCloseOutput.appendText(output += " has been closed.\n");
-                        clearInputs(event);
+                        clearInputs();
                     }
                 }
                 else openCloseOutput.appendText(verifyDateOutput);
@@ -169,7 +168,7 @@ public class TransactionManagerController {
         else openCloseOutput.appendText("Missing data for closing an account.\n");
     }
     @FXML
-    protected void hideCampusAndLoyal(ActionEvent event) {
+    protected void hideCampusAndLoyal() {
         campusMenu.selectToggle(null);
         camdenButton.setVisible(false);
         camdenButton.setMouseTransparent(true);
@@ -182,8 +181,8 @@ public class TransactionManagerController {
         isLoyal.setSelected(false);
     }
     @FXML
-    protected void showCampus(ActionEvent event) {
-        hideCampusAndLoyal(event);
+    protected void showCampus() {
+        hideCampusAndLoyal();
         camdenButton.setVisible(true);
         camdenButton.setMouseTransparent(false);
         newarkButton.setVisible(true);
@@ -192,13 +191,13 @@ public class TransactionManagerController {
         nbButton.setMouseTransparent(false);
     }
     @FXML
-    protected void showLoyal(ActionEvent event) {
-        hideCampusAndLoyal(event);
+    protected void showLoyal() {
+        hideCampusAndLoyal();
         isLoyal.setVisible(true);
         isLoyal.setMouseTransparent(false);
     }
     @FXML
-    protected void onDepositButtonClick(ActionEvent event) {
+    protected void onDepositButtonClick() {
         if(!firstNameDW.getText().isEmpty() && !lastNameDW.getText().isEmpty() && !birthPickerDW.getEditor().getText().isEmpty() && !amountText.getText().isEmpty() && accountsDW.getSelectedToggle() != null) {
             if(validDatePicker(birthPickerDW)) {
                 Profile profile = new Profile(firstNameDW.getText(), lastNameDW.getText(), Date.toDate(birthPickerDW.getValue()));
@@ -228,7 +227,7 @@ public class TransactionManagerController {
                             if (!accountDatabase.deposit(account)) depositWithdrawOutput.appendText(output + " is not in the database.\n");
                             else {
                                 depositWithdrawOutput.appendText(output += " Deposit - balance updated.\n");
-                                clearInputs(event);
+                                clearInputs();
                             }
                         }
                         else depositWithdrawOutput.appendText("Deposit cannot be 0 or negative.\n");
@@ -242,7 +241,7 @@ public class TransactionManagerController {
         else depositWithdrawOutput.appendText("Missing data for depositing into an account.\n");
     }
     @FXML
-    protected void onWithdrawButtonClick(ActionEvent event) {
+    protected void onWithdrawButtonClick() {
         if(!firstNameDW.getText().isEmpty() && !lastNameDW.getText().isEmpty() && !birthPickerDW.getEditor().getText().isEmpty() && !amountText.getText().isEmpty() && accountsDW.getSelectedToggle() != null) {
             if(validDatePicker(birthPickerDW)) {
                 Profile profile = new Profile(firstNameDW.getText(), lastNameDW.getText(), Date.toDate(birthPickerDW.getValue()));
@@ -273,7 +272,7 @@ public class TransactionManagerController {
                             else if (!accountDatabase.withdraw(account)) depositWithdrawOutput.appendText(output + " Withdraw - insufficient fund.\n");
                             else {
                                 depositWithdrawOutput.appendText(output += " Withdraw - balance updated.\n");
-                                clearInputs(event);
+                                clearInputs();
                             }
                         }
                         else depositWithdrawOutput.appendText("Withdraw cannot be 0 or negative.\n");
@@ -287,7 +286,7 @@ public class TransactionManagerController {
         else depositWithdrawOutput.appendText("Missing data for withdrawing from an account.\n");
     }
     @FXML
-    protected void onPrintAllButtonClick(ActionEvent event) {
+    protected void onPrintAllButtonClick() {
         if(accountDatabase.size() > 0) {
             manageDatabaseOutput.appendText("\n*Accounts sorted by account type and profile.\n");
             manageDatabaseOutput.appendText(accountDatabase.printSorted());
@@ -296,7 +295,7 @@ public class TransactionManagerController {
         else manageDatabaseOutput.appendText("Account Database is empty!\n");
     }
     @FXML
-    protected void onPrintInterestFeesButtonClick(ActionEvent event) {
+    protected void onPrintInterestFeesButtonClick() {
         if(accountDatabase.size() > 0) {
             manageDatabaseOutput.appendText("\n*list of accounts with fee and monthly interest\n");
             manageDatabaseOutput.appendText(accountDatabase.printFeesAndInterests());
@@ -305,7 +304,7 @@ public class TransactionManagerController {
         else manageDatabaseOutput.appendText("Account Database is empty!\n");
     }
     @FXML
-    protected void onUpdateButtonClick(ActionEvent event) {
+    protected void onUpdateButtonClick() {
         if(accountDatabase.size() > 0) {
             manageDatabaseOutput.appendText("\n*list of accounts with fees and interests applied.\n");
             manageDatabaseOutput.appendText(accountDatabase.printUpdatedBalances());
@@ -314,7 +313,7 @@ public class TransactionManagerController {
         else manageDatabaseOutput.appendText("Account Database is empty!\n");
     }
     @FXML
-    protected void onSaveButtonClick(ActionEvent event) {
+    protected void onSaveButtonClick() {
         try {
             FileWriter output = new FileWriter("src/main/resources/com/rubankgui/bankAccounts.txt");
             output.write(accountDatabase.toString());
@@ -326,7 +325,7 @@ public class TransactionManagerController {
         manageDatabaseOutput.appendText("Successfully saved to bankAccounts.txt\n");
     }
     @FXML
-    protected void onLoadButtonClick(ActionEvent event) {
+    protected void onLoadButtonClick() {
         try {
             BufferedReader bufferedReader=new BufferedReader(new FileReader("src/main/resources/com/rubankgui/bankAccounts.txt"));
             String input;
