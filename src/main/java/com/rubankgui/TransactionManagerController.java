@@ -46,18 +46,24 @@ public class TransactionManagerController {
         if((CURRENTMONTH == dob.getMonth()) && (CURRENTDAY < dob.getDay())) return age--;
         return age;
     }
-    private void clearInputs() {
-        firstNameOC.clear();
-        lastNameOC.clear();
-        birthPickerOC.getEditor().setText(null);
-        balanceText.clear();
-        accountsOC.selectToggle(null);
-        hideCampusAndLoyal();
-        firstNameDW.clear();
-        lastNameDW.clear();
-        birthPickerDW.getEditor().setText(null);
-        amountText.clear();
-        accountsDW.selectToggle(null);
+    @FXML
+    protected void clearInputs() {
+        try {
+            firstNameOC.clear();
+            lastNameOC.clear();
+            birthPickerOC.getEditor().setText(null);
+            balanceText.clear();
+            accountsOC.selectToggle(null);
+            hideCampusAndLoyal();
+            firstNameDW.clear();
+            lastNameDW.clear();
+            birthPickerDW.getEditor().setText(null);
+            amountText.clear();
+            accountsDW.selectToggle(null);
+        }
+        catch(NullPointerException e) {
+
+        }
     }
     @FXML
     protected void onOpenButtonClick() {
