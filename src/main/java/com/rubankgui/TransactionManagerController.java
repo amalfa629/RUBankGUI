@@ -7,6 +7,11 @@ import java.io.*;
 import java.time.format.*;
 import java.util.Calendar;
 
+/**
+ Generates a user interface for the RUbank project that allows a user to create and update and account
+ @author Tyler Amalfa, Zafar Khan
+ */
+
 public class TransactionManagerController {
     private static final AccountDatabase accountDatabase = new AccountDatabase();
     private static final int CURRENTYEAR = Calendar.getInstance().get(Calendar.YEAR); //year of date program is ran
