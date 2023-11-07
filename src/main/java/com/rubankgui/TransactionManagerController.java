@@ -378,7 +378,7 @@ public class TransactionManagerController {
     @FXML
     protected void onPrintInterestFeesButtonClick() {
         if(accountDatabase.size() > 0) {
-            manageDatabaseOutput.appendText("\n*list of accounts with fee and monthly interest\n");
+            manageDatabaseOutput.appendText("\n*list of accounts with fees and monthly interest\n");
             manageDatabaseOutput.appendText(accountDatabase.printFeesAndInterests());
             manageDatabaseOutput.appendText("*end of list.\n\n");
         }
