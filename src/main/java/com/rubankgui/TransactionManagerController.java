@@ -110,7 +110,9 @@ public class TransactionManagerController {
             case "College Checking":
                 if(age < COLLEGEMAXAGE) {
                     Campus campus = null;
-                    switch (((RadioButton) campusMenu.getSelectedToggle()).getText()) {
+                    String command = "default";
+                    if(((RadioButton) campusMenu.getSelectedToggle()) != null) command = ((RadioButton) campusMenu.getSelectedToggle()).getText();
+                    switch (command) {
                         case "Camden":
                             campus = Campus.CAMDEN;
                             break;
@@ -125,7 +127,6 @@ public class TransactionManagerController {
                             break;
                     }
                     if (!fail) account = new CollegeChecking(profile, balance, campus);
-                    else openCloseOutput.appendText("Invalid Campus Selection!\n");
                 }
                 else {
                     openCloseOutput.appendText("DOB invalid: " + profile.getDOB().toString() + " over 24.\n");
