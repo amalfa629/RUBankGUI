@@ -315,7 +315,7 @@ public class TransactionManagerController {
      */
     @FXML
     protected void onWithdrawButtonClick() {
-        if(!firstNameDW.getText().isEmpty() && !lastNameDW.getText().isEmpty() && !birthPickerDW.getEditor().getText().isEmpty() && !amountText.getText().isEmpty() && accountsDW.getSelectedToggle() != null) {
+        if(!firstNameDW.getText().isEmpty() && !lastNameDW.getText().isEmpty() && birthPickerDW.getEditor().getText() != null && !birthPickerDW.getEditor().getText().isEmpty() && !amountText.getText().isEmpty() && accountsDW.getSelectedToggle() != null) {
             if(validDatePicker(birthPickerDW)) {
                 Profile profile = new Profile(firstNameDW.getText(), lastNameDW.getText(), Date.toDate(birthPickerDW.getValue()));
                 String verifyDateOutput = verifyDate(profile.getDOB());
