@@ -156,6 +156,7 @@ public class AccountDatabase {
 
     /**
      sorts and prints the accounts in order
+     @return returns as string
      */
     public String printSorted(){
         StringBuilder out = new StringBuilder();
@@ -168,6 +169,7 @@ public class AccountDatabase {
 
     /**
      calculates and prints the all the fees and interest rates of the accounts
+     @return returns as string
      */
     public String printFeesAndInterests(){
         quicksort(0, numAcct - 1);
@@ -180,6 +182,7 @@ public class AccountDatabase {
 
     /**
      applies the fees and prints the accounts in the updated order
+     @return returns as string
      */
     public String printUpdatedBalances(){
         for(int n = 0; n < numAcct; n++) {

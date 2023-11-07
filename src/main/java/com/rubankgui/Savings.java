@@ -40,6 +40,11 @@ public class Savings extends Account{
         if(balance >= NOFEEBALANCE) return NOFEE;
         return MONTHLYFEE;
     }
+
+    /**
+     checks if account is loyal
+     @return returns true if loyal
+     */
     public boolean isLoyal() {
         return isLoyal;
     }

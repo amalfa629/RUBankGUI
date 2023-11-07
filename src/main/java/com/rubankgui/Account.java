@@ -10,8 +10,21 @@ public abstract class Account implements Comparable<Account> {
     protected final int PERCENT = 100;
     protected Profile holder;
     protected double balance;
+
+    /**
+     abstract method for returning amount of interest accumulated
+     @return monthly interest as double
+     */
     public abstract double monthlyInterest();
+    /**
+     abstract method for returning amount of fees due each month
+     @return monthly fee as double
+     */
     public abstract double monthlyFee();
+    /**
+     abstract method for returning account as String
+     @return account in String form
+     */
     public abstract String toString();
 
     /**

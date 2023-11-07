@@ -27,6 +27,11 @@ public class CollegeChecking extends Checking{
     public double monthlyFee() {
         return NOFEE;
     }
+
+    /**
+     gets the Campus
+     @return returns the accounts Campus
+     */
     public Campus getCampus() {
         return campus;
     }
